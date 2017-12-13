@@ -107,7 +107,7 @@ function FIELD()
 }
 FIELD.prototype.loadMap=function(world, stage)
 {
-	var location="/map/"+world+"-"+stage+".csv";
+	var location="map/"+world+"-"+stage+".csv";
 	var rawData=loadTable(location, "csv");
 	var cellData;
 	var kind,who;
