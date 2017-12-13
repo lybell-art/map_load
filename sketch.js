@@ -112,7 +112,7 @@ FIELD.prototype.loadMap=function(world, stage)
 	var cellData;
 	var kind,who;
 	this.width=rawData.column.length;
-	this.height=rawData.row.length);
+	this.height=rawData.row.length;
 	console.log(location);
 	console.log(rawData);
 	console.log(this.width,this.height);
