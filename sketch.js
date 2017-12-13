@@ -108,34 +108,27 @@ function FIELD()
 FIELD.prototype.loadMap=function(world, stage)
 {
 	var location="map/"+world+"-"+stage+".csv";
-	var rawData=loadTable(location, "csv");
-	var cellData;
-	var kind,who;
-	this.width=rawData.getColumnCount();
-	this.height=rawData.getRowCount();
-	console.log(location);
-	console.log(rawData);
-	console.log(this.width,this.height);
-	for(var i=0;i<this.height;i++)
+	var rawData=loadTable(location, "csv", function(rawData)
 	{
-		this.cells[i]=[];
-		for(var j=0;j<this.width;j++)
+		var cellData;
+		var kind,who;
+		this.width=rawData.getColumnCount();
+		this.height=rawData.getRowCount();
+		console.log(location);
+		console.log(rawData);
+		console.log(this.width,this.height);
+		for(var i=0;i<this.height;i++)
 		{
-			cellData=this.parse(rawData.getString(i,j));
-			this.cells[i][j]=new CELL(i,j,cellData.kind,cellData.who);
+			this.cells[i]=[];
+			for(var j=0;j<this.width;j++)
+			{
+				cellData=this.parse(rawData.getString(i,j));
+				this.cells[i][j]=new CELL(i,j,cellData.kind,cellData.who);
+			}
 		}
-	}
+	});
 }
-FIELD.prototype.draw=function()
-{
-	for(var i=0;i<this.width;i++)
-	{
-		for(var j=0;j<this.height;j++)
-		{
-			this.cells[i][j].draw();
-		}
-	}
-}
+
 FIELD.prototype.parse=function(rawStr)
 {
 	var res={kind:null, who:null};
@@ -149,6 +142,16 @@ FIELD.prototype.parse=function(rawStr)
 		case 'x':res.who=-1; break;
 	}
 	return res;
+}
+FIELD.prototype.draw=function()
+{
+	for(var i=0;i<this.width;i++)
+	{
+		for(var j=0;j<this.height;j++)
+		{
+			this.cells[i][j].draw();
+		}
+	}
 }
 
 
