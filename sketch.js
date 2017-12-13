@@ -113,6 +113,8 @@ FIELD.prototype.loadMap=function(world, stage)
 	var kind,who;
 	this.width=rawData.getColumnCount();
 	this.height=rawData.getRowCount();
+	console.log(location);
+	console.log(rawData);
 	console.log(this.width,this.height);
 	for(var i=0;i<this.width;i++)
 	{
