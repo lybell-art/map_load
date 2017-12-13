@@ -113,6 +113,7 @@ FIELD.prototype.loadMap=function(world, stage)
 	var kind,who;
 	this.width=rawData.getColumnCount();
 	this.height=rawData.getRowCount();
+	console.log(this.width,this.height);
 	for(var i=0;i<this.width;i++)
 	{
 		this.cells[i]=[];
@@ -125,11 +126,13 @@ FIELD.prototype.loadMap=function(world, stage)
 }
 FIELD.prototype.draw=function()
 {
-	var cellDraw=function(i,j)
+	for(var i=0;i<this.width;i++)
 	{
-		this.cells[i][j].draw();
-	};
-	this.repeat(cellDraw);
+		for(var j=0;j<this.height;j++)
+		{
+			this.cells[i][j].draw();
+		}
+	}
 }
 FIELD.prototype.parse=function(rawStr)
 {
@@ -144,16 +147,6 @@ FIELD.prototype.parse=function(rawStr)
 		case 'x':res.who=-1; break;
 	}
 	return res;
-}
-FIELD.prototype.repeat=function(func)
-{
-	for(var i=0;i<this.width;i++)
-	{
-		for(var j=0;j<this.height;j++)
-		{
-			func(i,j);
-		}
-	}
 }
 
 
