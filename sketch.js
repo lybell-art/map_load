@@ -111,15 +111,15 @@ FIELD.prototype.loadMap=function(world, stage)
 	var rawData=loadTable(location, "csv");
 	var cellData;
 	var kind,who;
-	this.width=rawData.getColumnCount();
-	this.height=rawData.getRowCount();
+	this.width=rawData.column.length;
+	this.height=rawData.row.length);
 	console.log(location);
 	console.log(rawData);
 	console.log(this.width,this.height);
-	for(var i=0;i<this.width;i++)
+	for(var i=0;i<this.height;i++)
 	{
 		this.cells[i]=[];
-		for(var j=0;j<this.height;j++)
+		for(var j=0;j<this.width;j++)
 		{
 			cellData=this.parse(rawData.getString(i,j));
 			this.cells[i][j]=new CELL(i,j,cellData.kind,cellData.who);
