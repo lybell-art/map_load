@@ -1,40 +1,18 @@
 var broadcast;
-var cell=[];
+var field;
 function setup()
 {
 	createCanvas(windowWidth,windowHeight);
 	broadcast=new BROADCAST();
-	for(var i=0;i<30;i++)
-	{
-		cell[i]=[];
-		for(var j=0;j<30;j++)
-		{
-			cell[i][j]=new CELL(i,j,1,0);
-		}
-	}
+	field=new FIELD();
+	field.loadMap(1,1);
 }
 function draw()
 {
 	var i,j;
 	background(255);
 	broadcast.renew();
-	if(broadcast.isMousePress)
-	{
-		for(i=0;i<30;i++)
-		{
-			for(j=0;j<30;j++)
-			{
-				cell[i][j].clicked();
-			}
-		}
-	}
-	for(i=0;i<30;i++)
-	{
-		for(j=0;j<30;j++)
-		{
-			cell[i][j].draw();
-		}
-	}
+	field.draw();
 }
 function mousePressed()
 {
