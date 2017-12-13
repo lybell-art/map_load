@@ -111,8 +111,8 @@ FIELD.prototype.loadMap=function(world, stage)
 	var rawData=loadTable(location, "csv");
 	var cellData;
 	var kind,who;
-	this.width=rawData.column.length;
-	this.height=rawData.row.length;
+	this.width=rawData.getColumnCount();
+	this.height=rawData.getRowCount();
 	console.log(location);
 	console.log(rawData);
 	console.log(this.width,this.height);
